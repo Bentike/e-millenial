@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width,initial-scale=1.0">
+       <meta name="description" content="ecommerce website">
+       <meta name="author" content="Ajadi Yusuf">
+       <title>EMS</title>
+       <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="query.css">
+   </head>
+   <body>
+      <div id="intro">
+          <div id="header">
+              <img src="/assets/images/EMS.svg" alt="logo">
+              <ul class="menu-list">
+                  <li class="menu-items"><a href="#">Intro</a></li>
+                  <li class="menu-items"><a href="#about">About</a></li>
+                  <li class="menu-items"><a href="#products">Shop</a></li>
+              </ul>
+              <div id="cart-btn">
+                  <img src="assets/images/cart.svg" alt="cart-logo"> 
+                  <span id="cart-val">0</span>
+              </div>
+          </div>
+          <div id="headline">
+               <h1>THE E- <br> MILLENIAL <br> STORE</h1>
+               <img src="assets/images/heroImage.svg" alt="heroImage">
+          </div>
+          <div id="btn-div">
+              <button id="shop-btn"><a href="#products">SHOP NOW</a></button>
+          </div>
+      </div>
+      <div id="cart-modal">
+          <div id="modal"> 
+             <table id="table">
+                <tr>
+                  <th>S/N</th>
+                  <th>Name</th>
+                  <th>PRICE</th>
+                  <th>QUANTITY</th>
+                  <th></th>
+                </tr>
+              </table>
+              <form action="">
+                <label for="name">
+                    <input id="name" type="text" placeholder="Your Name">
+                    <p class="message" id="name-error"></p>
+                </label>
+                <label for="email">
+                    <input id="email" type="email" placeholder="Your Email">
+                    <p class="message" id="email-error"></p>
+                </label>
+                <label for="number">
+                    <input id="number" type="number" placeholder="Your Phone Number">
+                    <p class="message" id="number-error"></p>
+                </label>
+              </form>
+              <div class="amount">
+                <h1>Total Amount to be Paid</h1>
+                <h1 id="total">#300000</h1>
+              </div>
+              <div class="checkout_btn">
+                  <button class="ctn">Continue Shopping</button>
+                  <button class="checkout">Checkout</button>
+              </div>
+          </div>
+          <div id="summary">
+              <h3>Thank you, <span id="b-name"></span>, Your Order has been received</h3>
+              <img id="summary-img" src="assets/images/check.svg" alt="success">
+              <h2>Summary</h2>
+              <table id="summary-table">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                      </tr>
+                </thead>  
+                <tbody id="table-body"></tbody>
+              </table>
+              <button class="ok-btn" onclick="closeSummary()">OK</button>
+          </div>
+      </div>
+      <div id="about">
+           <p>
+               E-millenial store is an hypothetical online store for gadgets we believe every
+               'Millenial' or 'Gen-Z' should have today. We've got mobile phones, laptops,
+               smart watches and other gadgets. Explore all our gadgets and choose the one that
+               suits you.
+           </p>
+      </div>
+
+      <div id="products">
+          <h1>OUR GADGETS</h1>
+          <div id="products-container"></div>
+      </div>
+    
+      <div id="footer">
+           <img src="assets/images/EMS.svg" alt="logo">
+           <p>Designed and Crafted by a Frontend Ninja</p>
+      </div>
+   </body>
+
+   <script src="https://js.paystack.co/v1/inline.js"></script> 
+   <script src="index.js"></script>
+</html
