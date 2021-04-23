@@ -230,7 +230,7 @@ function loadData(){
                 <img class="product-img" src=${product.src} alt="products">
                 <div class="img__overlay">
                     <h2>PRICE</h2>
-                    <h1 class="price">${product.price}</h1>
+                    <h1 class="price">#${product.price}</h1>
                 </div>  
             </div>
             <h3 class="product-name">${product.name}</h3>
@@ -266,7 +266,7 @@ function addAndRemove(){
         tr.innerHTML = `
         <td>${cart.indexOf(product) + 1}</td>
         <td>${product.name}</td>
-        <td>${product.price}</td>
+        <td>#${product.price}</td>
         <td row-id=${product.id}><span class="inc minus">-</span> <span class="val">${product.quantity}</span><span class="inc add">+</span></td>
         <td><button class="remove" data-id=${product.id}>Remove</button></td>
         ` 
