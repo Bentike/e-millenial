@@ -161,7 +161,8 @@ function setTotal(){
         totalPrice = cart[i].price * cart[i].quantity;
         total += totalPrice;
     }
-    totalAmount.innerHTML = total;
+    totalAmount.innerHTML = '#' + total;
+    return total;
 }
 
 //This function increases the quantity of a product in cart
@@ -316,7 +317,7 @@ function payWithPaystack() {
     let handler = PaystackPop.setup({
       key: 'pk_test_3d11a7f726e2a83aeccd225fa6e9bf858b29eec7', // Replace with your public key
       email: email.value,
-      amount: Number(totalAmount.innerHTML) * 100,
+      amount: setTotal() * 100,
       ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
       // label: "Optional string that replaces customer email"
       onClose: function(){
