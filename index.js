@@ -161,7 +161,7 @@ function setTotal(){
         totalPrice = cart[i].price * cart[i].quantity;
         total += totalPrice;
     }
-    totalAmount.innerHTML = '#' + total;
+    totalAmount.innerHTML = '&#8358;' + total;
     return total;
 }
 
@@ -224,14 +224,14 @@ function loadData(){
     let data = '';
     let text;
     products.forEach(product => {
-        cart.includes(product)? text = 'Remove From Cart' : text = 'ADD TO CART';
+        cart.includes(product)? text = 'REMOVE FROM CART' : text = 'ADD TO CART';
         data += 
         `<div class="items">
             <div class="item_overlay">
                 <img class="product-img" src=${product.src} alt="products">
                 <div class="img__overlay">
                     <h2>PRICE</h2>
-                    <h1 class="price">#${product.price}</h1>
+                    <h1 class="price">&#8358;${product.price}</h1>
                 </div>  
             </div>
             <h3 class="product-name">${product.name}</h3>
@@ -253,12 +253,16 @@ function addAndRemove(){
         product.quantity = 1;
         let index = cart.indexOf(product);
         cart = [...cart.slice(0, index), ...cart.slice(index + 1, cart.length)];
-        this.innerHTML = 'ADD TO CART';
+         this.innerHTML = 'ADD TO CART';
+         this.style.backgroundColor = '#FF7A00';
+         this.style.color = '#000';
         setCartValue();
         setTotal();
     }else{
         cart = [...cart, product];
-        this.innerHTML = "Remove From Cart";
+         this.innerHTML = "REMOVE FROM CART";
+         this.style.backgroundColor = 'red';
+         this.style.color = '#fff'
         setCartValue();
 
         // This Logic Creates a Table row for each Product inside the modal
@@ -267,7 +271,7 @@ function addAndRemove(){
         tr.innerHTML = `
         <td>${cart.indexOf(product) + 1}</td>
         <td>${product.name}</td>
-        <td>#${product.price}</td>
+        <td>&#8358;${product.price}</td>
         <td row-id=${product.id}><span class="inc minus">-</span> <span class="val">${product.quantity}</span><span class="inc add">+</span></td>
         <td><button class="remove" data-id=${product.id}>Remove</button></td>
         ` 
@@ -281,9 +285,11 @@ function validateName(){
    if(userName.value.length < 3){
        nameError.innerHTML = 'Name too short'
        userName.style.border = '2px solid red';
+       return false;
    }else{
         nameError.innerHTML = ''
         userName.style.border = '2px solid green';
+        return true;
    }     
 }
 
@@ -295,9 +301,11 @@ function validateEmail(){
     }else if(!email.value.includes('@')){
         email.style.border = 'red';
         emailError.innerHTML = "invalid email address";
+        return false;
     }else{
         email.style.border = '2px solid green';
         emailError.innerHTML = "";
+        return true;
     }
 }
 
@@ -307,9 +315,11 @@ function validateNumber(){
    if(length < 11 || length > 13){
        number.style.border = '2px solid red'
        numberError.innerHTML = 'number should not be less than 11 or 13';
+       return false;
    }else{
         number.style.border = '2px solid green'
         numberError.innerHTML = '';
+        return true;
    }
 }
 
@@ -333,15 +343,25 @@ function payWithPaystack() {
 
 //This function is executed when the checkout button is clicked.
 function pay(){
-    validateName();
-    validateEmail();
-    validateNumber();
-    payWithPaystack();
+    if(cart.length < 1){
+        alert("Kindly add an item to the Cart");  
+    }else if(!validateName() || !validateEmail() || !validateNumber()){
+        alert("Invalid Credentials");
+    }else{
+        payWithPaystack();
+    }
 }
 
 // This function Set up the event listeners for all the Add to Cart buttons.
 function addItemToCart(){
    buttons.forEach(btn => {
+       if(btn.textContent === 'REMOVE FROM CART'){
+        btn.style.backgroundColor = 'red';
+        btn.style.color = '#fff'
+       }else{
+        btn.style.backgroundColor = '#FF7A00';
+        btn.style.color = '#000'; 
+       }
        btn.addEventListener('click', addAndRemove);
    });
 }
